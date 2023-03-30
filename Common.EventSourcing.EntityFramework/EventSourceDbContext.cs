@@ -18,6 +18,7 @@ namespace CodeWright.Common.EventSourcing.EntityFramework
 
             modelBuilder.Entity<EventLogEntity>().HasKey(p => new { p.Id, p.TenantId, p.Version });
             modelBuilder.Entity<EventLogEntity>().HasIndex(p => new { p.Id, p.TenantId });
+            modelBuilder.Entity<EventLogEntity>().HasIndex(p => new { p.TypeId, p.TenantId });
             modelBuilder.Entity<EventLogEntity>().HasIndex(p => new { p.Version });
 
             modelBuilder.Entity<SnapshotEntity>().HasKey(p => new { p.Id, p.TenantId });

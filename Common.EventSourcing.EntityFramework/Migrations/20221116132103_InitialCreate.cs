@@ -49,6 +49,11 @@ namespace CodeWright.Metadata.API.Migrations.EventSourceDb
                 columns: new[] { "Id", "TenantId" });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Events_TypeId_TenantId",
+                table: "Events",
+                columns: new[] { "TypeId", "TenantId" });
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Events_Version",
                 table: "Events",
                 column: "Version");
