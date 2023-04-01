@@ -17,13 +17,35 @@ public class EFEventStoreQuery : IEventStoreQuery
         _converter = converter;
     }
 
-    public async Task<IDomainEvent?> GetLastEventOfType(string tenantId, string typeId)
+    public async Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(string tenantId, string typeId, int count)
     {
-        var match = await _context.Events.AsNoTracking()
+        var matches = await _context.Events.AsNoTracking()
            .Where(ev => ev.TypeId == typeId && ev.TenantId == tenantId)
-           .OrderBy(ev => ev.Version)
-           .LastOrDefaultAsync();
+           .OrderByDescending(ev => ev.Version)
+           .Take(count)
+           .ToListAsync();
 
-        return match != null ? JsonConvert.DeserializeObject<IDomainEvent>(match.Content, _converter) : null;
+        var results = matches
+            .Select(m => JsonConvert.DeserializeObject<IDomainEvent>(m.Content, _converter))
+            .Where(m => m != null)
+            .ToList();
+
+        return results!;
+    }
+
+    public async Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(string id, string tenantId, string typeId, int count)
+    {
+        var matches = await _context.Events.AsNoTracking()
+           .Where(ev => ev.TypeId == typeId && ev.Id == id && ev.TenantId == tenantId)
+           .OrderByDescending(ev => ev.Version)
+           .Take(count)
+           .ToListAsync();
+
+        var results = matches
+            .Select(m => JsonConvert.DeserializeObject<IDomainEvent>(m.Content, _converter))
+            .Where(m => m != null)
+            .ToList();
+
+        return results!;
     }
 }
