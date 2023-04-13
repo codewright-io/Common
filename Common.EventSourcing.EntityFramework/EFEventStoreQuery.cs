@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 namespace CodeWright.Common.EventSourcing.EntityFramework;
@@ -15,6 +16,22 @@ public class EFEventStoreQuery : IEventStoreQuery
     {
         _context = context;
         _converter = converter;
+    }
+
+    public async Task<IEnumerable<IDomainEvent>> GetAsync(long fromVersion, int limit)
+    {
+        var matches = await _context.Events.AsNoTracking()
+           .Where(ev => ev.Version > fromVersion)
+           .OrderBy(ev => ev.Version)
+           .Take(limit)
+           .ToListAsync();
+
+        var results = matches
+            .Select(m => JsonConvert.DeserializeObject<IDomainEvent>(m.Content, _converter))
+            .Where(m => m != null)
+            .ToList();
+
+        return results!;
     }
 
     public async Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(string tenantId, string typeId, int count)

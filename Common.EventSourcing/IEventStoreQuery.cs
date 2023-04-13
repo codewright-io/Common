@@ -23,4 +23,13 @@ public interface IEventStoreQuery
     /// <param name="count">The number of events to fetch.</param>
     /// <returns>The matching events</returns>
     Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(string id, string tenantId, string typeId, int count);
+
+    /// <summary>
+    /// Fetch a list of events from a specific version, ordered by version.
+    /// </summary>
+    /// <param name="fromVersion">The version to start from.</param>
+    /// <param name="limit">The maximum number of events to fetch</param>
+    /// <returns>The list of events</returns>
+    Task<IEnumerable<IDomainEvent>> GetAsync(long fromVersion, int limit);
+
 }
