@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System.Collections.Concurrent;
 using System.Reflection;
 
@@ -46,8 +47,18 @@ public class InternalEventBus : IEventBus
 
                 foreach (var handler in handlers)
                 {
-                    if (handleEventMethod.Invoke(handler, new[] { ev }) is Task task)
-                        await task;
+                    try
+                    {
+                        if (handleEventMethod.Invoke(handler, new[] { ev }) is Task task)
+                            await task;
+                    }
+                    catch (Exception ex)
+                    {   // Swallow exceptions in handlers and move onto the next event
+                        var loggerFactory = _serviceProvider.GetRequiredService<ILoggerFactory>();
+                        var logger = loggerFactory.CreateLogger(handler?.GetType() ?? GetType());
+                        logger.LogError(ex, "Event hander had unhandled exception");
+                        continue;
+                    }
                 }
             }
         }
