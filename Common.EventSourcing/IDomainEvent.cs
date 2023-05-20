@@ -36,4 +36,7 @@ public interface IDomainEvent
     /// <example>123456</example>
     [Required]
     long Version { get; }
+
+    /// <summary>The event class name, used to assist in deserializing</summary>
+    public string EventClass { get; }
 }

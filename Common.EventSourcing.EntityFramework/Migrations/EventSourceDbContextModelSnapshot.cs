@@ -57,6 +57,8 @@ namespace CodeWright.Metadata.API.Migrations.EventSourceDb
 
                     b.HasIndex("Id", "TenantId");
 
+                    b.HasIndex("TypeId", "TenantId");
+
                     b.ToTable("Events");
                 });
 
