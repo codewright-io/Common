@@ -19,6 +19,7 @@ public class ExceptionMiddleware
 
     public async Task InvokeAsync(HttpContext httpContext)
     {
+#pragma warning disable CA1031 // Do not catch general exception types
         try
         {
             await _next(httpContext);
@@ -28,6 +29,7 @@ public class ExceptionMiddleware
             _logger.LogError($"Something went wrong: {ex}");
             await HandleExceptionAsync(httpContext, ex);
         }
+#pragma warning restore CA1031 // Do not catch general exception types
     }
 
     private static async Task HandleExceptionAsync(HttpContext context, Exception exception)

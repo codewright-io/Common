@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
 	<RootNamespace>CodeWright.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 	<AssemblyName>CodeWright.$(MSBuildProjectName)</AssemblyName>
-	<CodeAnalysisRuleSet>..\..\analysis.ruleset</CodeAnalysisRuleSet>
+	<CodeAnalysisRuleSet>..\analysis.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
 </Project>
