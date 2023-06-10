@@ -14,7 +14,7 @@ public class InternalEventBus : IEventBus
 
     // Cache of reflected event handler methods.
     // Can be a null entry if no handler for that method.
-    private static ConcurrentDictionary<Type, MethodInfo?> _methodLookup = new();
+    private static readonly ConcurrentDictionary<Type, MethodInfo?> _methodLookup = new();
 
     /// <summary>
     /// Create an instance of a InternalEventBus
