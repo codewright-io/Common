@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace CodeWright.Common.Asp;
+﻿namespace CodeWright.Common.Asp;
 
 public class ErrorResponse
 {

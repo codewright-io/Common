@@ -47,6 +47,7 @@ public class InternalEventBus : IEventBus
 
                 foreach (var handler in handlers)
                 {
+#pragma warning disable CA1031 // Do not catch general exception types
                     try
                     {
                         if (handleEventMethod.Invoke(handler, new[] { ev }) is Task task)
@@ -59,6 +60,7 @@ public class InternalEventBus : IEventBus
                         logger.LogError(ex, "Event hander had unhandled exception");
                         continue;
                     }
+#pragma warning restore CA1031 // Do not catch general exception types
                 }
             }
         }
