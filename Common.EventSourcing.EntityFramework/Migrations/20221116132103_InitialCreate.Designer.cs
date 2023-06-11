@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace CodeWright.Tagcat.API.Migrations.EventSourceDb
+namespace CodeWright.Common.EventSourcing.EntityFramework.Migrations.EventSourceDb
 {
     [DbContext(typeof(EventSourceDbContext))]
     [Migration("20221116132103_InitialCreate")]
