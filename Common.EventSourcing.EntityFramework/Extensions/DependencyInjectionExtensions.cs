@@ -7,6 +7,9 @@ using Newtonsoft.Json;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
+/// <summary>
+/// Service registration extensions
+/// </summary>
 public static class DependencyInjectionExtensions
 {
     /// <summary>
@@ -31,7 +34,7 @@ public static class DependencyInjectionExtensions
     }
 
     /// <summary>
-    /// Register event creation
+    /// Register event creation and JSON converter
     /// </summary>
     /// <param name="services"></param>
     public static IServiceCollection AddEvents<TModel, TFactory>(this IServiceCollection services, Assembly modelAssembly)
@@ -41,6 +44,19 @@ public static class DependencyInjectionExtensions
         // Register domain event assemblies to our JSON converter (It is thread-safe)
         services.AddSingleton<JsonConverter>(p => new DomainEventJsonConverter(modelAssembly));
 
+        services.AddEventRepositories<TModel, TFactory>();
+
+        return services;
+    }
+
+    /// <summary>
+    /// Register event creation
+    /// </summary>
+    /// <param name="services"></param>
+    public static IServiceCollection AddEventRepositories<TModel, TFactory>(this IServiceCollection services)
+        where TModel : IDomainObject
+        where TFactory : IDomainObjectFactory<TModel>, new()
+    {
         services.AddScoped<ISnapshotRepository<TModel>, EFSnapshotRepository<TModel>>();
         services.AddScoped<IDomainRepository<TModel>, SnapshotDomainObjectRepository<TModel, TFactory>>();
 
