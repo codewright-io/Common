@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace CodeWright.Metadata.API.Migrations.EventSourceDb
+namespace CodeWright.Tagcat.API.Migrations.EventSourceDb
 {
     [DbContext(typeof(EventSourceDbContext))]
     partial class EventSourceDbContextModelSnapshot : ModelSnapshot
