@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace CodeWright.Metadata.API.Migrations.EventSourceDb
+namespace CodeWright.Common.EventSourcing.EntityFramework.Migrations.EventSourceDb
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
