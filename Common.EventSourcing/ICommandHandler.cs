@@ -5,7 +5,7 @@
 /// </summary>
 /// <typeparam name="TCommand">The type of command to receive</typeparam>
 public interface ICommandHandler<TCommand> 
-    where TCommand : IDomainCommand, new()
+    where TCommand : IDomainCommand
 {
     /// <summary>
     /// Process the command

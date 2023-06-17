@@ -7,7 +7,7 @@
 #pragma warning disable CA1711 // Identifiers should not have incorrect suffix
 public interface IEventHandler<TEvent>
 #pragma warning restore CA1711 // Identifiers should not have incorrect suffix
-    where TEvent : IDomainEvent, new()
+    where TEvent : IDomainEvent
 {
     /// <summary>
     /// Process the event
