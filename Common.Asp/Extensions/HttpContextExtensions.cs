@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using CodeWright.Common;
 using Microsoft.Net.Http.Headers;
 
 namespace Microsoft.AspNetCore.Http;
@@ -24,6 +25,24 @@ public static class HttpContextExtensions
             userId = value.FirstOrDefault();
         }
         return userId;
+    }
+
+    /// <summary>
+    /// Return the Tenant ID from the HTTP header
+    /// </summary>
+    /// <param name="context"></param>
+    /// <returns></returns>
+    public static string GetTenantId(this HttpContext context)
+    {
+        if (context == null) throw new ArgumentNullException(nameof(context));
+
+        // TODO: Consider other methods to provide the tenantid
+        string? tenantId = null;
+        if (context.Request.Headers.TryGetValue("tenantid", out var value))
+        {
+            tenantId = value.FirstOrDefault();
+        }
+        return tenantId ?? ReservedTenants.Default;
     }
 
     /// <summary>
