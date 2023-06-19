@@ -1,5 +1,8 @@
 ﻿namespace CodeWright.Common;
 
+/// <summary>
+/// Special types
+/// </summary>
 public static class ReservedTypes
 {
     public static readonly string User = "user/v1";
