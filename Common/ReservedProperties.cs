@@ -9,4 +9,8 @@ public static class ReservedProperties
     public static readonly string Description = "$description";
 
     public static readonly string IconUrl = "$iconUrl";
+
+    public static readonly string PolicyAction = "action";
+
+    public static readonly string PolicyActionResourceType = "actionResourceType";
 }
