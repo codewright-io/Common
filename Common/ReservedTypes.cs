@@ -13,5 +13,7 @@ public static class ReservedTypes
 
     public static readonly string Policy = "_policy";
 
+    public static readonly string PolicyTarget = "_policyTarget";
+
     public static readonly string Schedule = "_schedule";
 }
