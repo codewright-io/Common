@@ -10,10 +10,11 @@ public interface IEventStore
     /// </summary>
     /// <param name="id">The ID of the object.</param>
     /// <param name="tenantId">The ID of the tenant.</param>
+    /// <param name="typeId">The event type ID of the events to fetch.</param>
     /// <param name="fromVersion">The version to start from.</param>
     /// <param name="limit">The maximum number of events to fetch</param>
     /// <returns>The list of events</returns>
-    Task<IEnumerable<IDomainEvent>> GetByIdAsync(string id, string tenantId, long fromVersion, int limit);
+    Task<IEnumerable<IDomainEvent>> GetByIdAsync(string id, string tenantId, string typeId, long fromVersion, int limit);
 
     /// <summary>
     /// Save a list of events

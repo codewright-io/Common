@@ -20,15 +20,15 @@ namespace CodeWright.Common.EventSourcing.EntityFramework
         /// <summary>
         /// Get the domain entity
         /// </summary>
-        public async Task<T?> GetByIdAsync(string id, string tenantId)
+        public async Task<T?> GetByIdAsync(string id, string tenantId, string typeId)
         {
             const int limit = 100;
-            var domainEvents = await _eventStore.GetByIdAsync(id, tenantId, -1, limit);
+            var domainEvents = await _eventStore.GetByIdAsync(id, tenantId, typeId, -1, limit);
             var factory = new TFactory();
             var domainObject = factory.CreateFromEvents(domainEvents);
             while (domainObject != null && domainEvents.Count() == limit)
             {
-                domainEvents = await _eventStore.GetByIdAsync(id, tenantId, domainObject.Version, limit);
+                domainEvents = await _eventStore.GetByIdAsync(id, tenantId, typeId, domainObject.Version, limit);
                 factory.UpdateFromEvents(domainObject, domainEvents);
             }
             domainObject?.StartQueuing();

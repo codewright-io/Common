@@ -33,13 +33,13 @@ public class SnapshotDomainObjectRepository<T, TFactory> : IDomainRepository<T>
     }
 
     /// <inheritdoc/>
-    public async Task<T?> GetByIdAsync(string id, string tenantId)
+    public async Task<T?> GetByIdAsync(string id, string tenantId, string typeId)
     {
         // Get the snapshot
         var snapshot = await _snapshotStore.GetAsync(id, tenantId);
         long snapshotVersion = (snapshot != null) ? snapshot.Version : -1;
 
-        var events = await _eventStore.GetByIdAsync(id, tenantId, snapshotVersion, int.MaxValue);
+        var events = await _eventStore.GetByIdAsync(id, tenantId, typeId, snapshotVersion, int.MaxValue);
 
         var builder = new TFactory();
         var item = (snapshot != null) ? builder.UpdateFromEvents(snapshot.Model, events) : builder.CreateFromEvents(events);
