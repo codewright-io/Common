@@ -67,8 +67,8 @@ public static class SwaggerGenOptionsExtensions
     /// <summary>
     /// Add extra information to OpenAPI
     /// </summary>
-    public static SwaggerGenOptions IncludeDocumentInformation(this SwaggerGenOptions options, 
-        string title, 
+    public static SwaggerGenOptions IncludeDocumentInformation(this SwaggerGenOptions options,
+        string title,
         string version,
         string description,
         Uri? logoUrl = null,
@@ -95,7 +95,7 @@ public static class SwaggerGenOptionsExtensions
             Title = title,
             Version = version,
             Description = description,
-            Contact = contactUrl != null && !string.IsNullOrEmpty(contactName) ? 
+            Contact = contactUrl != null && !string.IsNullOrEmpty(contactName) ?
                 new OpenApiContact { Name = contactName, Url = contactUrl, Email = contactEmail, } : null,
             License = licenseUrl != null ? new OpenApiLicense { Name = "License", Url = licenseUrl } : null,
             Extensions = logoUrl != null ? new Dictionary<string, IOpenApiExtension>

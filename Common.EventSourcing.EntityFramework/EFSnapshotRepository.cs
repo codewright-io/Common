@@ -28,7 +28,7 @@ public class EFSnapshotRepository<TModel> : ISnapshotRepository<TModel>
             return null;
 
         var model = JsonConvert.DeserializeObject<TModel>(entity.Content, _converter);
-        if (model == null) 
+        if (model == null)
             return null;
         return new Snapshot<TModel>(model, entity.Version);
     }

@@ -47,7 +47,7 @@ namespace CodeWright.Common.EventSourcing.EntityFramework
 
             // Save to event store
             await _eventStore.SaveAsync(domainEvents);
-            
+
             // Send to event bus
             await _eventBus.SendAsync(domainEvents);
         }

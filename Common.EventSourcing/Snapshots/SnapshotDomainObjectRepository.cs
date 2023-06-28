@@ -18,7 +18,7 @@ public class SnapshotDomainObjectRepository<T, TFactory> : IDomainRepository<T>
     /// Create an instance of a SnapshotDomainObjectRepository
     /// </summary>
     public SnapshotDomainObjectRepository(
-        ISnapshotRepository<T> snapshotStore, 
+        ISnapshotRepository<T> snapshotStore,
         IEventStore eventStore,
         IEventBus eventBus,
         int snapshotInterval = 12)

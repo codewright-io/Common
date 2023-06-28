@@ -51,7 +51,7 @@ public class BasicDomainObjectRepository<T, TFactory> : IDomainRepository<T>
 
         // Save to event store
         await _eventStore.SaveAsync(domainEvents);
-        
+
         // Send to event bus
         await _eventBus.SendAsync(domainEvents);
     }

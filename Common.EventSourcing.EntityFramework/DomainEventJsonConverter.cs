@@ -13,7 +13,7 @@ public class DomainEventJsonConverter : JsonConverter
 
     public DomainEventJsonConverter(IEnumerable<Assembly> domainEventAssemblies)
         : this(domainEventAssemblies
-            .SelectMany(a => a.GetTypes())) 
+            .SelectMany(a => a.GetTypes()))
     {
     }
 

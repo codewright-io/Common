@@ -23,7 +23,7 @@ public static class DependencyInjectionExtensions
 
         // Add the event store DB context
         services.AddDbContext<EventSourceDbContext>(options => options.UseDatabase(database, connectionString, "CodeWright.Common.EventSourcing.EntityFramework"));
-        
+
         // Add the event store
         services.AddScoped<IEventStore, EFEventStore>();
 
