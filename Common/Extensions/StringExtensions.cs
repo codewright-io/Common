@@ -36,4 +36,18 @@ public static class StringExtensions
 
         return sb.ToString();
     }
+
+    public static string Md5(this string value)
+    {
+        var sb = new StringBuilder();
+
+        using var hash = System.Security.Cryptography.MD5.Create();
+        byte[] result = hash.ComputeHash(Encoding.UTF8.GetBytes(value));
+
+        foreach (byte b in result)
+            sb.Append(b.ToString("x2", CultureInfo.InvariantCulture));
+
+        return sb.ToString();
+    }
+
 }
