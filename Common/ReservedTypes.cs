@@ -5,6 +5,8 @@
 /// </summary>
 public static class ReservedTypes
 {
+    public static readonly string Any = "_any";
+
     public static readonly string User = "_user";
 
     public static readonly string SchemaType = "_type";
