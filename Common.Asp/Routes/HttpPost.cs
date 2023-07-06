@@ -21,6 +21,11 @@ public static class HttpPost
     public static string Policy => $"api/policy/v1/";
 
     /// <summary>
+    /// Create a policy
+    /// </summary>
+    public static string PolicyBulk => $"api/policy/v1/bulk";
+
+    /// <summary>
     /// Add a policy target
     /// </summary>
     public static string PolicyTargetAdd => $"api/policy-target/v1/add";
