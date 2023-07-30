@@ -12,6 +12,11 @@ public static class HttpDelete
     /// Delete a JSON blob
     /// </summary>
     public static string JsonBlob(string typeId, string id) => $"api/blob/v1/{HttpUtility.UrlEncode(typeId)}/{HttpUtility.UrlEncode(id)}";
+
+    /// <summary>
+    /// Delete all JSON blobs
+    /// </summary>
+    public static string JsonBlobBulk() => $"api/blob-bulk/v1";
     #endregion Blob
 
     #region Policy

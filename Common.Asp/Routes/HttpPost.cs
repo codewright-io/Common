@@ -12,6 +12,11 @@ public static class HttpPost
     /// Create a JSON blob, or replace if it exists
     /// </summary>
     public static string JsonBlob(string typeId, string id) => $"api/blob/v1/{HttpUtility.UrlEncode(typeId)}/{HttpUtility.UrlEncode(id)}";
+
+    /// <summary>
+    /// Post a bulk set of JSON Blobs
+    /// </summary>
+    public static string JsonBlobBulkImport() => $"api/blob-bulk/v1/import";
     #endregion Blob
 
     #region Policy

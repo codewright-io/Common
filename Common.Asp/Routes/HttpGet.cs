@@ -19,9 +19,9 @@ public static class HttpGet
     public static string JsonBlobAll(string typeId) => $"api/blob/v1/{HttpUtility.UrlEncode(typeId)}";
 
     /// <summary>
-    /// Fetch all JSON blobs of a type
+    /// Fetch all JSON blobs
     /// </summary>
-    public static string JsonBlobExport() => $"api/blob/v1/export";
+    public static string JsonBlobBulkExport() => $"api/blob-bulk/v1/export";
     #endregion Blob
 
     #region Policy
