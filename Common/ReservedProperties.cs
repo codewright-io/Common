@@ -4,6 +4,8 @@ public static class ReservedProperties
 {
     public static readonly string Id = "$id";
 
+    public static readonly string TypeId = "$typeId";
+
     public static readonly string Name = "$name";
 
     public static readonly string Description = "$description";
