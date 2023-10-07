@@ -32,4 +32,13 @@ public interface IEventStoreQuery
     /// <returns>The list of events</returns>
     Task<IEnumerable<IDomainEvent>> GetAsync(long fromVersion, int limit);
 
+    /// <summary>
+    /// Fetch the events of a specific type from a specific version.
+    /// </summary>
+    /// <param name="typeId">The type of the object.</param>
+    /// <param name="tenantId">The ID of the tenant.</param>
+    /// <param name="fromVersion">The version to start from.</param>
+    /// <param name="limit">The maximum number of events to fetch</param>
+    /// <returns>The list of events</returns>
+    Task<IEnumerable<IDomainEvent>> GetOfTypeAsync(string tenantId, string typeId, long fromVersion, int limit);
 }
