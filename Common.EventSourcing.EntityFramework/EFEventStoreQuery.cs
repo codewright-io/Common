@@ -79,7 +79,7 @@ public class EFEventStoreQuery : IEventStoreQuery
         var matches = await _context.Events.AsNoTracking()
            .Where(ev => ev.TypeId == typeId && ev.TenantId == tenantId)
            .Where(ev => ev.Version > fromVersion)
-           .OrderByDescending(ev => ev.Version)
+           .OrderBy(ev => ev.Version)
            .Take(limit)
            .ToListAsync();
 
