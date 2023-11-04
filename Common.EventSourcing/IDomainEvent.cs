@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using CodeWright.Common.EventSourcing.Models;
 
 namespace CodeWright.Common.EventSourcing;
 
@@ -26,7 +27,7 @@ public interface IDomainEvent
     string SourceId { get; }
 
     /// <summary>The ID of the user that generated the event</summary>
-    string UserId { get; }
+    UserId UserId { get; }
 
     /// <summary>The ID of the type of object that the domain event pertains to</summary>
     [Required]

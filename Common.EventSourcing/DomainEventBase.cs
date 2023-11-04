@@ -1,4 +1,6 @@
-﻿namespace CodeWright.Common.EventSourcing;
+﻿using CodeWright.Common.EventSourcing.Models;
+
+namespace CodeWright.Common.EventSourcing;
 
 /// <summary>
 /// Optional base class for domain events
@@ -6,22 +8,22 @@
 public abstract class DomainEventBase : IDomainEvent
 {
     /// <inheritdoc />
-    public string Id { get; init; } = string.Empty;
+    public required string Id { get; init; }
 
     /// <inheritdoc />
-    public string TenantId { get; init; } = string.Empty;
+    public required string TenantId { get; init; }
 
     /// <inheritdoc />
-    public DateTime Time { get; init; }
+    public required DateTime Time { get; init; }
 
     /// <inheritdoc />
-    public string SourceId { get; init; } = string.Empty;
+    public required string SourceId { get; init; }
 
     /// <inheritdoc />
-    public long Version { get; init; }
+    public required long Version { get; init; }
 
     /// <summary>The ID of the user that generated the event</summary>
-    public string UserId { get; init; } = string.Empty;
+    public required UserId UserId { get; init; }
 
     /// <summary>The ID of the type of object that the domain event pertains to</summary>
     public abstract string TypeId { get; }

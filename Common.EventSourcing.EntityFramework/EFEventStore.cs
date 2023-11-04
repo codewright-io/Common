@@ -58,7 +58,7 @@ public class EFEventStore : IEventStore
                 CreateTime = ev.Time,
                 SourceId = ev.SourceId,
                 TypeId = ev.TypeId,
-                UserId = ev.UserId,
+                UserId = ev.UserId.ToString(),
             });
 
         await _context.Events.AddRangeAsync(entities);
