@@ -19,14 +19,15 @@ public class EFEventStore : IEventStore
         _converter = converter;
     }
 
-    public async Task<IEnumerable<IDomainEvent>> GetByIdAsync(string id, TenantId tenantId, string typeId, long fromVersion, int limit)
+    public async Task<IEnumerable<IDomainEvent>> GetByIdAsync(
+        ObjectId id, TenantId tenantId, TypeId typeId, long fromVersion, int limit)
     {
         if (limit <= 0)
             throw new ArgumentException("Must be greater than zero", nameof(limit));
 
         // Construct an ID-based query 
         var eventQuery = _context.Events.AsNoTracking()
-            .Where(ev => ev.Id == id && ev.TenantId == tenantId.ToString() && ev.TypeId == typeId);
+            .Where(ev => ev.Id == id.ToString() && ev.TenantId == tenantId.ToString() && ev.TypeId == typeId.ToString());
 
         // If a version was provided, then filter by it
         if (fromVersion > 0)
@@ -52,13 +53,13 @@ public class EFEventStore : IEventStore
         var entities = events
             .Select(ev => new EventLogEntity
             {
-                Id = ev.Id,
+                Id = ev.Id.ToString(),
                 TenantId = ev.TenantId.ToString(),
                 Version = ev.Version,
                 Content = JsonConvert.SerializeObject(ev),
                 CreateTime = ev.Time,
-                SourceId = ev.SourceId,
-                TypeId = ev.TypeId,
+                SourceId = ev.SourceId.ToString(),
+                TypeId = ev.TypeId.ToString(),
                 UserId = ev.UserId.ToString(),
             });
 

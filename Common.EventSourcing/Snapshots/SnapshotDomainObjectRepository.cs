@@ -35,7 +35,7 @@ public class SnapshotDomainObjectRepository<T, TFactory> : IDomainRepository<T>
     }
 
     /// <inheritdoc/>
-    public async Task<T?> GetByIdAsync(string id, TenantId tenantId, string typeId)
+    public async Task<T?> GetByIdAsync(ObjectId id, TenantId tenantId, TypeId typeId)
     {
         // Get the snapshot
         var snapshot = await _snapshotStore.GetAsync(id, tenantId);

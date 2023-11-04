@@ -10,7 +10,7 @@ public interface IDomainObject
     /// <summary>
     /// Unique identifier for the object (unique within the tenancy)
     /// </summary>
-    string Id { get; init; }
+    ObjectId Id { get; init; }
 
     /// <summary>
     /// Tenant Id for the object
@@ -23,7 +23,7 @@ public interface IDomainObject
     long Version { get; }
 
     /// <summary>A unique ID for the type</summary>
-    string TypeId { get; }
+    TypeId TypeId { get; }
 
     /// <summary>
     /// Start queueing events.

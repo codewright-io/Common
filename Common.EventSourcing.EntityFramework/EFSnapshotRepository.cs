@@ -22,10 +22,10 @@ public class EFSnapshotRepository<TModel> : ISnapshotRepository<TModel>
         _converter = converter;
     }
 
-    public async Task<Snapshot<TModel>?> GetAsync(string id, TenantId tenantId)
+    public async Task<Snapshot<TModel>?> GetAsync(ObjectId id, TenantId tenantId)
     {
         var entity = await _context.Snapshots.AsNoTracking()
-            .SingleOrDefaultAsync(s => s.Id == id && s.TenantId == tenantId.ToString());
+            .SingleOrDefaultAsync(s => s.Id == id.ToString() && s.TenantId == tenantId.ToString());
         if (entity == null)
             return null;
 
@@ -39,7 +39,7 @@ public class EFSnapshotRepository<TModel> : ISnapshotRepository<TModel>
     {
         var snapshot = new SnapshotEntity
         {
-            Id = model.Id,
+            Id = model.Id.ToString(),
             TenantId = model.TenantId.ToString(),
             Content = JsonConvert.SerializeObject(model, _converter),
             Version = version,

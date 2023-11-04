@@ -11,7 +11,7 @@ public interface IDomainEvent
     /// <summary> identifier for the object (unique within the tenancy) </summary>
     /// <example>A_Midsummer_Nights_Dream</example>
     [Required, StringLength(Identifiers.MaximumLength)]
-    string Id { get; }
+    ObjectId Id { get; }
 
     /// <summary>Tenant Id for the object</summary>
     /// <example>William_Shakespeare</example>
@@ -24,14 +24,14 @@ public interface IDomainEvent
     DateTime Time { get; }
 
     /// <summary>The source service that generated the event</summary>
-    string SourceId { get; }
+    SourceId SourceId { get; }
 
     /// <summary>The ID of the user that generated the event</summary>
     UserId UserId { get; }
 
     /// <summary>The ID of the type of object that the domain event pertains to</summary>
     [Required]
-    string TypeId { get; }
+    TypeId TypeId { get; }
 
     /// <summary>Version for event ordering</summary>
     /// <example>123456</example>

@@ -12,7 +12,7 @@ public interface IDomainRepository<T>
     /// <summary>
     /// Get the domain entity
     /// </summary>
-    Task<T?> GetByIdAsync(string id, TenantId tenantId, string typeId);
+    Task<T?> GetByIdAsync(ObjectId id, TenantId tenantId, TypeId typeId);
 
     /// <summary>
     /// Save the domain entity

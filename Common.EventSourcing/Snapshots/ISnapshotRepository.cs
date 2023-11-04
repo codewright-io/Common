@@ -12,7 +12,7 @@ public interface ISnapshotRepository<TModel>
     /// <summary>
     /// Fetch the snapshot by ID, tenantID
     /// </summary>
-    Task<Snapshot<TModel>?> GetAsync(string id, TenantId tenantId);
+    Task<Snapshot<TModel>?> GetAsync(ObjectId id, TenantId tenantId);
 
     /// <summary>
     /// Save the snapshot with a specified version

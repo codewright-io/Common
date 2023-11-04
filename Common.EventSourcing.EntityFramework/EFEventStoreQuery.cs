@@ -39,10 +39,10 @@ public class EFEventStoreQuery : IEventStoreQuery
     }
 
     /// <inheritdoc/>
-    public async Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(TenantId tenantId, string typeId, int count)
+    public async Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(TenantId tenantId, TypeId typeId, int count)
     {
         var matches = await _context.Events.AsNoTracking()
-           .Where(ev => ev.TypeId == typeId && ev.TenantId == tenantId.ToString())
+           .Where(ev => ev.TypeId == typeId.ToString() && ev.TenantId == tenantId.ToString())
            .OrderByDescending(ev => ev.Version)
            .Take(count)
            .ToListAsync();
@@ -56,10 +56,10 @@ public class EFEventStoreQuery : IEventStoreQuery
     }
 
     /// <inheritdoc/>
-    public async Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(string id, TenantId tenantId, string typeId, int count)
+    public async Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(ObjectId id, TenantId tenantId, TypeId typeId, int count)
     {
         var matches = await _context.Events.AsNoTracking()
-           .Where(ev => ev.TypeId == typeId && ev.Id == id && ev.TenantId == tenantId.ToString())
+           .Where(ev => ev.TypeId == typeId.ToString() && ev.Id == id.ToString() && ev.TenantId == tenantId.ToString())
            .OrderByDescending(ev => ev.Version)
            .Take(count)
            .ToListAsync();
@@ -73,10 +73,10 @@ public class EFEventStoreQuery : IEventStoreQuery
     }
 
     /// <inheritdoc/>
-    public async Task<IEnumerable<IDomainEvent>> GetOfTypeAsync(TenantId tenantId, string typeId, long fromVersion, int limit)
+    public async Task<IEnumerable<IDomainEvent>> GetOfTypeAsync(TenantId tenantId, TypeId typeId, long fromVersion, int limit)
     {
         var matches = await _context.Events.AsNoTracking()
-           .Where(ev => ev.TypeId == typeId && ev.TenantId == tenantId.ToString())
+           .Where(ev => ev.TypeId == typeId.ToString() && ev.TenantId == tenantId.ToString())
            .Where(ev => ev.Version > fromVersion)
            .OrderBy(ev => ev.Version)
            .Take(limit)

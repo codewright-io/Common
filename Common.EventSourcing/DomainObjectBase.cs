@@ -10,7 +10,7 @@ public abstract class DomainObjectBase : IDomainObject
     /// <summary>
     /// Unique identifier for the object
     /// </summary>
-    public required string Id { get; init; }
+    public required ObjectId Id { get; init; }
 
     /// <summary>
     /// Tenant Id for the object
@@ -23,7 +23,7 @@ public abstract class DomainObjectBase : IDomainObject
     public long Version { get; protected set; }
 
     /// <summary>A unique ID for the type</summary>
-    public abstract string TypeId { get; }
+    public abstract TypeId TypeId { get; }
 
     private readonly List<IDomainEvent> _eventQueue = new List<IDomainEvent>();
     private bool _queuing;

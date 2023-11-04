@@ -14,7 +14,7 @@ public interface IEventStoreQuery
     /// <param name="tenantId">The ID of the tenant.</param>
     /// <param name="count">The number of events to fetch.</param>
     /// <returns>The matching events</returns>
-    Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(TenantId tenantId, string typeId, int count);
+    Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(TenantId tenantId, TypeId typeId, int count);
 
     /// <summary>
     /// Fetch the last events of a specific type.
@@ -24,7 +24,7 @@ public interface IEventStoreQuery
     /// <param name="tenantId">The ID of the tenant.</param>
     /// <param name="count">The number of events to fetch.</param>
     /// <returns>The matching events</returns>
-    Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(string id, TenantId tenantId, string typeId, int count);
+    Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(ObjectId id, TenantId tenantId, TypeId typeId, int count);
 
     /// <summary>
     /// Fetch a list of events from a specific version, ordered by version.
@@ -42,5 +42,5 @@ public interface IEventStoreQuery
     /// <param name="fromVersion">The version to start from.</param>
     /// <param name="limit">The maximum number of events to fetch</param>
     /// <returns>The list of events</returns>
-    Task<IEnumerable<IDomainEvent>> GetOfTypeAsync(TenantId tenantId, string typeId, long fromVersion, int limit);
+    Task<IEnumerable<IDomainEvent>> GetOfTypeAsync(TenantId tenantId, TypeId typeId, long fromVersion, int limit);
 }

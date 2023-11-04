@@ -18,7 +18,7 @@ public class BasicDomainObjectRepository<T, TFactory> : IDomainRepository<T>
     /// <summary>
     /// Get the domain entity
     /// </summary>
-    public async Task<T?> GetByIdAsync(string id, TenantId tenantId, string typeId)
+    public async Task<T?> GetByIdAsync(ObjectId id, TenantId tenantId, TypeId typeId)
     {
         const int limit = 100;
         var domainEvents = await _eventStore.GetByIdAsync(id, tenantId, typeId, -1, limit);
