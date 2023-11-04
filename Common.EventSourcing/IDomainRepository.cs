@@ -18,6 +18,5 @@ public interface IDomainRepository<T>
     /// Save the domain entity
     /// </summary>
     /// <param name="item">The domain object to save</param>
-    /// <param name="userId">The user the made the changes</param>
-    Task SaveAsync(T item, string userId);
+    Task SaveAsync(T item);
 }

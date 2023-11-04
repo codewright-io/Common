@@ -46,8 +46,7 @@ public class BasicDomainObjectRepository<T, TFactory> : IDomainRepository<T>
     /// Save the domain entity
     /// </summary>
     /// <param name="item">The domain object to save</param>
-    /// <param name="userId">The user the made the changes</param>
-    public async Task SaveAsync(T item, string userId)
+    public async Task SaveAsync(T item)
     {
         var domainEvents = item.StopQueuing();
 

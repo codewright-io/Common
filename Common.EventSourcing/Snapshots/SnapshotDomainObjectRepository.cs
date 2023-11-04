@@ -58,7 +58,7 @@ public class SnapshotDomainObjectRepository<T, TFactory> : IDomainRepository<T>
     }
 
     /// <inheritdoc/>
-    public async Task SaveAsync(T item, string userId)
+    public async Task SaveAsync(T item)
     {
         var domainEvents = item.StopQueuing();
 

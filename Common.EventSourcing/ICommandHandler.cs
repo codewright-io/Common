@@ -1,4 +1,6 @@
-﻿namespace CodeWright.Common.EventSourcing;
+﻿using CodeWright.Common.EventSourcing.Models;
+
+namespace CodeWright.Common.EventSourcing;
 
 /// <summary>
 /// Common interface for classes that receive and process commands.
@@ -13,5 +15,5 @@ public interface ICommandHandler<TCommand>
     /// <param name="command">The command to process</param>
     /// <param name="userId">The user that is processing the command</param>
     /// <returns>The result</returns>
-    Task<CommandResult> HandleAsync(TCommand command, string userId);
+    Task<CommandResult> HandleAsync(TCommand command, UserId userId);
 }

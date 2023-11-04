@@ -1,6 +1,4 @@
-﻿using System;
-using CodeWright.Common.EventSourcing.Models;
-using IdGen;
+﻿using CodeWright.Common.EventSourcing.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
