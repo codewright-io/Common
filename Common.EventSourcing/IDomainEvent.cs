@@ -16,7 +16,7 @@ public interface IDomainEvent
     /// <summary>Tenant Id for the object</summary>
     /// <example>William_Shakespeare</example>
     [Required, StringLength(Identifiers.MaximumLength)]
-    string TenantId { get; }
+    TenantId TenantId { get; }
 
     /// <summary>Time that the event was created</summary>
     /// <example>2007-03-01T13:00:00Z</example>

@@ -1,4 +1,6 @@
-﻿namespace CodeWright.Common.EventSourcing.Snapshots;
+﻿using CodeWright.Common.EventSourcing.Models;
+
+namespace CodeWright.Common.EventSourcing.Snapshots;
 
 
 /// <summary>
@@ -10,7 +12,7 @@ public interface ISnapshotRepository<TModel>
     /// <summary>
     /// Fetch the snapshot by ID, tenantID
     /// </summary>
-    Task<Snapshot<TModel>?> GetAsync(string id, string tenantId);
+    Task<Snapshot<TModel>?> GetAsync(string id, TenantId tenantId);
 
     /// <summary>
     /// Save the snapshot with a specified version

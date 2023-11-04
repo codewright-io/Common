@@ -1,4 +1,6 @@
-﻿namespace CodeWright.Common.EventSourcing.Snapshots;
+﻿using CodeWright.Common.EventSourcing.Models;
+
+namespace CodeWright.Common.EventSourcing.Snapshots;
 
 /// <summary>
 /// Similar to the BasicDomainObjectRepository, but adds snapshots for performance.
@@ -33,7 +35,7 @@ public class SnapshotDomainObjectRepository<T, TFactory> : IDomainRepository<T>
     }
 
     /// <inheritdoc/>
-    public async Task<T?> GetByIdAsync(string id, string tenantId, string typeId)
+    public async Task<T?> GetByIdAsync(string id, TenantId tenantId, string typeId)
     {
         // Get the snapshot
         var snapshot = await _snapshotStore.GetAsync(id, tenantId);

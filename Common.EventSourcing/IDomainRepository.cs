@@ -1,4 +1,6 @@
-﻿namespace CodeWright.Common.EventSourcing;
+﻿using CodeWright.Common.EventSourcing.Models;
+
+namespace CodeWright.Common.EventSourcing;
 
 /// <summary>
 /// Repository to save and retrieve domain objects
@@ -10,7 +12,7 @@ public interface IDomainRepository<T>
     /// <summary>
     /// Get the domain entity
     /// </summary>
-    Task<T?> GetByIdAsync(string id, string tenantId, string typeId);
+    Task<T?> GetByIdAsync(string id, TenantId tenantId, string typeId);
 
     /// <summary>
     /// Save the domain entity

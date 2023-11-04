@@ -11,7 +11,7 @@ public abstract class DomainEventBase : IDomainEvent
     public required string Id { get; init; }
 
     /// <inheritdoc />
-    public required string TenantId { get; init; }
+    public required TenantId TenantId { get; init; }
 
     /// <inheritdoc />
     public required DateTime Time { get; init; }

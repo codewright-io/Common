@@ -1,4 +1,5 @@
 ﻿using CodeWright.Common.EventSourcing.EntityFramework.Entities;
+using CodeWright.Common.EventSourcing.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -18,14 +19,14 @@ public class EFEventStore : IEventStore
         _converter = converter;
     }
 
-    public async Task<IEnumerable<IDomainEvent>> GetByIdAsync(string id, string tenantId, string typeId, long fromVersion, int limit)
+    public async Task<IEnumerable<IDomainEvent>> GetByIdAsync(string id, TenantId tenantId, string typeId, long fromVersion, int limit)
     {
         if (limit <= 0)
             throw new ArgumentException("Must be greater than zero", nameof(limit));
 
         // Construct an ID-based query 
         var eventQuery = _context.Events.AsNoTracking()
-            .Where(ev => ev.Id == id && ev.TenantId == tenantId && ev.TypeId == typeId);
+            .Where(ev => ev.Id == id && ev.TenantId == tenantId.ToString() && ev.TypeId == typeId);
 
         // If a version was provided, then filter by it
         if (fromVersion > 0)
@@ -52,7 +53,7 @@ public class EFEventStore : IEventStore
             .Select(ev => new EventLogEntity
             {
                 Id = ev.Id,
-                TenantId = ev.TenantId,
+                TenantId = ev.TenantId.ToString(),
                 Version = ev.Version,
                 Content = JsonConvert.SerializeObject(ev),
                 CreateTime = ev.Time,

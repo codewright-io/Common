@@ -1,4 +1,6 @@
-﻿namespace CodeWright.Common.EventSourcing;
+﻿using CodeWright.Common.EventSourcing.Models;
+
+namespace CodeWright.Common.EventSourcing;
 
 /// <summary>
 /// Interface for domain commands
@@ -15,5 +17,5 @@ public interface IDomainCommand
     /// Tenant Id for the object
     /// </summary>
     /// <example>William_Shakespeare</example>
-    string TenantId { get; init; }
+    TenantId TenantId { get; init; }
 }

@@ -1,4 +1,6 @@
-﻿namespace CodeWright.Common.EventSourcing.EntityFramework;
+﻿using CodeWright.Common.EventSourcing.Models;
+
+namespace CodeWright.Common.EventSourcing.EntityFramework;
 
 /// <summary>
 /// A basic repository for saving domain objects.
@@ -24,7 +26,7 @@ public class BasicDomainObjectRepository<T, TFactory> : IDomainRepository<T>
     /// <summary>
     /// Get the domain entity
     /// </summary>
-    public async Task<T?> GetByIdAsync(string id, string tenantId, string typeId)
+    public async Task<T?> GetByIdAsync(string id, TenantId tenantId, string typeId)
     {
         const int limit = 100;
         var domainEvents = await _eventStore.GetByIdAsync(id, tenantId, typeId, -1, limit);

@@ -1,4 +1,6 @@
-﻿namespace CodeWright.Common.EventSourcing;
+﻿using CodeWright.Common.EventSourcing.Models;
+
+namespace CodeWright.Common.EventSourcing;
 
 /// <summary>
 /// Interface for all domain objects
@@ -13,7 +15,7 @@ public interface IDomainObject
     /// <summary>
     /// Tenant Id for the object
     /// </summary>
-    string TenantId { get; init; }
+    TenantId TenantId { get; init; }
 
     /// <summary>
     /// Version for event ordering

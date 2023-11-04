@@ -1,4 +1,5 @@
 ﻿using CodeWright.Common.EventSourcing.EntityFramework.Entities;
+using CodeWright.Common.EventSourcing.Models;
 using CodeWright.Common.EventSourcing.Snapshots;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -21,9 +22,10 @@ public class EFSnapshotRepository<TModel> : ISnapshotRepository<TModel>
         _converter = converter;
     }
 
-    public async Task<Snapshot<TModel>?> GetAsync(string id, string tenantId)
+    public async Task<Snapshot<TModel>?> GetAsync(string id, TenantId tenantId)
     {
-        var entity = await _context.Snapshots.AsNoTracking().SingleOrDefaultAsync(s => s.Id == id && s.TenantId == tenantId);
+        var entity = await _context.Snapshots.AsNoTracking()
+            .SingleOrDefaultAsync(s => s.Id == id && s.TenantId == tenantId.ToString());
         if (entity == null)
             return null;
 
@@ -38,7 +40,7 @@ public class EFSnapshotRepository<TModel> : ISnapshotRepository<TModel>
         var snapshot = new SnapshotEntity
         {
             Id = model.Id,
-            TenantId = model.TenantId,
+            TenantId = model.TenantId.ToString(),
             Content = JsonConvert.SerializeObject(model, _converter),
             Version = version,
         };

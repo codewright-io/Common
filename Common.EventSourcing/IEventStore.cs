@@ -1,4 +1,6 @@
-﻿namespace CodeWright.Common.EventSourcing;
+﻿using CodeWright.Common.EventSourcing.Models;
+
+namespace CodeWright.Common.EventSourcing;
 
 /// <summary>
 /// Interface for an event sourcing store
@@ -14,7 +16,7 @@ public interface IEventStore
     /// <param name="fromVersion">The version to start from.</param>
     /// <param name="limit">The maximum number of events to fetch</param>
     /// <returns>The list of events</returns>
-    Task<IEnumerable<IDomainEvent>> GetByIdAsync(string id, string tenantId, string typeId, long fromVersion, int limit);
+    Task<IEnumerable<IDomainEvent>> GetByIdAsync(string id, TenantId tenantId, string typeId, long fromVersion, int limit);
 
     /// <summary>
     /// Save a list of events
