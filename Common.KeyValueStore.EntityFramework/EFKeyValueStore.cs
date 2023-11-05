@@ -1,4 +1,5 @@
-﻿using CodeWright.Common.KeyValueStore.EntityFramework.Entities;
+﻿using CodeWright.Common.EventSourcing;
+using CodeWright.Common.KeyValueStore.EntityFramework.Entities;
 
 namespace CodeWright.Common.KeyValueStore.EntityFramework;
 

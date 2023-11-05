@@ -1,4 +1,4 @@
-﻿namespace CodeWright.Common.KeyValueStore.EntityFramework;
+﻿namespace CodeWright.Common.EventSourcing;
 
 /// <summary>
 /// Interface for a generic key/value lookup

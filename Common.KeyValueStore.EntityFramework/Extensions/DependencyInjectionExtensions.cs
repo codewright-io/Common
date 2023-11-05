@@ -1,4 +1,5 @@
 ﻿using CodeWright.Common;
+using CodeWright.Common.EventSourcing;
 using CodeWright.Common.KeyValueStore.EntityFramework;
 
 namespace Microsoft.Extensions.DependencyInjection;
