@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Ids", "Common.Ids\Common.Ids.csproj", "{40970A0A-94BE-4FDF-AC14-B0FD8D2A671D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.KeyValueStore.EntityFramework", "Common.KeyValueStore.EntityFramework\Common.KeyValueStore.EntityFramework.csproj", "{81D96896-A00B-4452-9529-5AAC87E7CFA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{40970A0A-94BE-4FDF-AC14-B0FD8D2A671D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40970A0A-94BE-4FDF-AC14-B0FD8D2A671D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40970A0A-94BE-4FDF-AC14-B0FD8D2A671D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81D96896-A00B-4452-9529-5AAC87E7CFA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81D96896-A00B-4452-9529-5AAC87E7CFA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81D96896-A00B-4452-9529-5AAC87E7CFA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81D96896-A00B-4452-9529-5AAC87E7CFA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

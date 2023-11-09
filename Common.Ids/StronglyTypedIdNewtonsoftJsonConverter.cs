@@ -3,6 +3,12 @@ using Newtonsoft.Json;
 
 namespace CodeWright.Common.Ids;
 
+/// <summary>
+/// Newtonsoft JSON Converter for strongly typed IDs.
+/// </summary>
+/// <remarks>
+/// From here: https://thomaslevesque.com/2020/12/07/csharp-9-records-as-strongly-typed-ids-part-3-json-serialization/
+/// </remarks>
 public class StronglyTypedIdNewtonsoftJsonConverter : JsonConverter
 {
     private static readonly ConcurrentDictionary<Type, JsonConverter?> _cache = new();

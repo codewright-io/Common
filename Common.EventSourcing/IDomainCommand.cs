@@ -17,5 +17,5 @@ public interface IDomainCommand
     /// Tenant Id for the object
     /// </summary>
     /// <example>William_Shakespeare</example>
-    TenantId TenantId { get; init; }
+    string TenantId { get; init; }
 }
