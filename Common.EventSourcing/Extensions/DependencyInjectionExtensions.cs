@@ -13,10 +13,10 @@ public static class DependencyInjectionExtensions
     /// <summary>
     /// Register event sourcing services
     /// </summary>
-    public static IServiceCollection AddEventSourcing(this IServiceCollection services)
+    public static IServiceCollection AddEventSourcing(this IServiceCollection services, int generatorId)
     {
         // Add support for ID generation
-        services.AddSingleton(p => new IdGen.IdGenerator(0));
+        services.AddSingleton(p => new IdGen.IdGenerator(generatorId));
 
         services.AddScoped<ITimeProvider, CurrentTimeProvider>();
         services.AddScoped<IVersionProvider, IdGenVersionProvider>();

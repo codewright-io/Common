@@ -23,4 +23,7 @@ public class TimeVersionProvider : IVersionProvider
         // TODO: Need to use server ID too? Or also a counter
         return time.Ticks;
     }
+
+    /// <inheritdoc/>
+    public IEnumerable<long> GetNewVersions(int count) => EnumerableExtensions.Range(GetNewVersion(), count);
 }

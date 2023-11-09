@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using CodeWright.Common;
+using CodeWright.Common.Asp;
 using CodeWright.Common.EventSourcing;
 using CodeWright.Common.EventSourcing.EntityFramework;
 using CodeWright.Common.EventSourcing.Snapshots;
@@ -16,13 +17,13 @@ public static class DependencyInjectionExtensions
     /// Register command handlers and validators
     /// </summary>
     /// <param name="services"></param>
-    public static IServiceCollection AddEntityFrameworkEventSourcing(this IServiceCollection services, DatabaseType database, string connectionString)
+    public static IServiceCollection AddEntityFrameworkEventSourcing(this IServiceCollection services, ServiceSettings settings)
     {
         // Add basic event sourcing classes
-        services.AddEventSourcing();
+        services.AddEventSourcing(string.GetHashCode(settings.ServiceId, StringComparison.InvariantCulture));
 
         // Add the event store DB context
-        services.AddDbContext<EventSourceDbContext>(options => options.UseDatabase(database, connectionString, "CodeWright.Common.EventSourcing.EntityFramework"));
+        services.AddDbContext<EventSourceDbContext>(options => options.UseDatabase(settings.Database, settings.EventConnectionString, "CodeWright.Common.EventSourcing.EntityFramework"));
 
         // Add the event store
         services.AddScoped<IEventStore, EFEventStore>();

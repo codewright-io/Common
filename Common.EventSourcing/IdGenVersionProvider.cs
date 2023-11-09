@@ -20,4 +20,7 @@ public class IdGenVersionProvider : IVersionProvider
 
     /// <inheritdoc/>
     public long GetNewVersion() => _idGenerator.CreateId();
+
+    /// <inheritdoc/>
+    public IEnumerable<long> GetNewVersions(int count) => _idGenerator.Take(count);
 }
