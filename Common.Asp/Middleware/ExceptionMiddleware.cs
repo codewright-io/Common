@@ -45,6 +45,9 @@ public class ExceptionMiddleware
             case BadRequestException:
                 statusCode = HttpStatusCode.BadRequest;
                 break;
+            case AlreadyExistsException:
+                statusCode = HttpStatusCode.Conflict;
+                break;
             case InvalidInternalStateException:
                 statusCode = HttpStatusCode.Conflict;
                 break;
