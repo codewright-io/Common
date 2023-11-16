@@ -20,7 +20,8 @@ public static class DependencyInjectionExtensions
     public static IServiceCollection AddEntityFrameworkEventSourcing(this IServiceCollection services, ServiceSettings settings)
     {
         // Add basic event sourcing classes
-        services.AddEventSourcing(string.GetHashCode(settings.ServiceId, StringComparison.InvariantCulture));
+        var generationId = Math.Abs(string.GetHashCode(settings.ServiceId, StringComparison.InvariantCulture) % 1024);
+        services.AddEventSourcing(generationId);
 
         // Add the event store DB context
         services.AddDbContext<EventSourceDbContext>(options => options.UseDatabase(settings.Database, settings.EventConnectionString, "CodeWright.Common.EventSourcing.EntityFramework"));
