@@ -27,7 +27,7 @@ public class EFEventStore : IEventStore
 
         // Construct an ID-based query 
         var eventQuery = _context.Events.AsNoTracking()
-            .Where(ev => ev.Id == id.ToString() && ev.TenantId == tenantId.ToString() && ev.TypeId == typeId.ToString());
+            .Where(ev => ev.Id == id.Value && ev.TenantId == tenantId.Value && ev.TypeId == typeId.Value);
 
         // If a version was provided, then filter by it
         if (fromVersion > 0)
@@ -53,14 +53,14 @@ public class EFEventStore : IEventStore
         var entities = events
             .Select(ev => new EventLogEntity
             {
-                Id = ev.Id.ToString(),
-                TenantId = ev.TenantId.ToString(),
+                Id = ev.Id.Value,
+                TenantId = ev.TenantId.Value,
                 Version = ev.Version,
                 Content = JsonConvert.SerializeObject(ev),
                 CreateTime = ev.Time,
-                SourceId = ev.SourceId.ToString(),
-                TypeId = ev.TypeId.ToString(),
-                UserId = ev.UserId.ToString(),
+                SourceId = ev.SourceId.Value,
+                TypeId = ev.TypeId.Value,
+                UserId = ev.UserId.Value,
             });
 
         await _context.Events.AddRangeAsync(entities);

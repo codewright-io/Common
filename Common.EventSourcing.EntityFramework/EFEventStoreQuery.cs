@@ -42,7 +42,7 @@ public class EFEventStoreQuery : IEventStoreQuery
     public async Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(TenantId tenantId, TypeId typeId, int count)
     {
         var matches = await _context.Events.AsNoTracking()
-           .Where(ev => ev.TypeId == typeId.ToString() && ev.TenantId == tenantId.ToString())
+           .Where(ev => ev.TypeId == typeId.Value && ev.TenantId == tenantId.Value)
            .OrderByDescending(ev => ev.Version)
            .Take(count)
            .ToListAsync();
@@ -59,7 +59,7 @@ public class EFEventStoreQuery : IEventStoreQuery
     public async Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(ObjectId id, TenantId tenantId, TypeId typeId, int count)
     {
         var matches = await _context.Events.AsNoTracking()
-           .Where(ev => ev.TypeId == typeId.ToString() && ev.Id == id.ToString() && ev.TenantId == tenantId.ToString())
+           .Where(ev => ev.TypeId == typeId.Value && ev.Id == id.Value && ev.TenantId == tenantId.Value)
            .OrderByDescending(ev => ev.Version)
            .Take(count)
            .ToListAsync();
@@ -76,7 +76,7 @@ public class EFEventStoreQuery : IEventStoreQuery
     public async Task<IEnumerable<IDomainEvent>> GetOfTypeAsync(TenantId tenantId, TypeId typeId, long fromVersion, int limit)
     {
         var matches = await _context.Events.AsNoTracking()
-           .Where(ev => ev.TypeId == typeId.ToString() && ev.TenantId == tenantId.ToString())
+           .Where(ev => ev.TypeId == typeId.Value && ev.TenantId == tenantId.Value)
            .Where(ev => ev.Version > fromVersion)
            .OrderBy(ev => ev.Version)
            .Take(limit)
