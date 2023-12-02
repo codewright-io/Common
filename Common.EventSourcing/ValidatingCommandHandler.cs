@@ -10,7 +10,7 @@ namespace CodeWright.Common.EventSourcing;
 /// <typeparam name="TCommand"></typeparam>
 /// <typeparam name="TCommandValidator"></typeparam>
 public class ValidatingCommandHandler<TCommand, TCommandValidator> : ICommandHandler<TCommand>
-    where TCommand : IDomainCommand
+    where TCommand : class
     where TCommandValidator : AbstractValidator<TCommand>, new()
 {
     private readonly ICommandHandler<TCommand> _wrappedHandler;
