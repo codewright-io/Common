@@ -7,9 +7,4 @@ namespace CodeWright.Common.EventSourcing;
 /// </summary>
 public interface IDomainCommand
 {
-    /// <summary>
-    /// Unique identifier for the object (unique within the tenancy)
-    /// </summary>
-    /// <example>A_Midsummer_Nights_Dream</example>
-    string Id { get; init; }
 }
