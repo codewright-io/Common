@@ -7,7 +7,7 @@ namespace CodeWright.Common.EventSourcing.EntityFramework;
 /// <summary>
 /// An entity framework based event store.
 /// </summary>
-public class EFEventStoreQuery : IEventStoreQuery
+public class EFEventStoreQuery : IEventStoreQuery, IEventStoreAuditQuery
 {
     private readonly EventSourceDbContext _context;
     private readonly JsonConverter _converter;
@@ -60,6 +60,23 @@ public class EFEventStoreQuery : IEventStoreQuery
     {
         var matches = await _context.Events.AsNoTracking()
            .Where(ev => ev.TypeId == typeId.Value && ev.Id == id.Value && ev.TenantId == tenantId.Value)
+           .OrderByDescending(ev => ev.Version)
+           .Take(count)
+           .ToListAsync();
+
+        var results = matches
+            .Select(m => JsonConvert.DeserializeObject<IDomainEvent>(m.Content, _converter))
+            .Where(m => m != null)
+            .ToList();
+
+        return results!;
+    }
+
+    /// <inheritdoc/>
+    public async Task<IEnumerable<IDomainEvent>> GetLastEventsOfType(UserId userId, TenantId tenantId, TypeId typeId, int count)
+    {
+        var matches = await _context.Events.AsNoTracking()
+           .Where(ev => ev.TypeId == typeId.Value && ev.UserId == userId.Value && ev.TenantId == tenantId.Value)
            .OrderByDescending(ev => ev.Version)
            .Take(count)
            .ToListAsync();

@@ -31,6 +31,7 @@ public static class DependencyInjectionExtensions
 
         // Add event store queries
         services.AddScoped<IEventStoreQuery, EFEventStoreQuery>();
+        services.AddScoped<IEventStoreAuditQuery, EFEventStoreQuery>();
 
         return services;
     }
