@@ -44,7 +44,7 @@ public class EFSnapshotRepository<TModel> : ISnapshotRepository<TModel>
             Content = JsonConvert.SerializeObject(model, _converter),
             Version = version,
         };
-        var match = await _context.Snapshots.FindAsync(model.Id, model.TenantId);
+        var match = await _context.Snapshots.FindAsync(model.Id.Value, model.TenantId);
         if (match == null)
         {
             await _context.Snapshots.AddAsync(snapshot);
